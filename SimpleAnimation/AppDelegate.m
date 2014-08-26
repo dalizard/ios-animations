@@ -24,7 +24,7 @@
 
     [self.window addSubview:redBall];
     
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -34,7 +34,12 @@
                              CGAffineTransformMakeTranslation(75, 0));
                      }
                      completion:NULL];
-    
+
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:.3 initialSpringVelocity:0 options:0 animations:^{
+        redBall.transform = CGAffineTransformMakeTranslation(150, 0);
+    } completion:NULL];
+
+
     return YES;
 }
 
