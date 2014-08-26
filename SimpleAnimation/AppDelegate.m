@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <JNWSpringAnimation.h>
 
 @implementation AppDelegate
 
@@ -23,7 +24,8 @@
     redBall.layer.cornerRadius = 50;
 
     [self.window addSubview:redBall];
-    
+
+    /*
     [UIView animateWithDuration:3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -38,7 +40,17 @@
     [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:.3 initialSpringVelocity:0 options:0 animations:^{
         redBall.transform = CGAffineTransformMakeTranslation(150, 0);
     } completion:NULL];
+    */
 
+    JNWSpringAnimation *scale = [JNWSpringAnimation animationWithKeyPath:@"transform.scale"];
+    scale.damping = 9;
+    scale.stiffness = 100;
+    scale.mass = 2;
+    scale.fromValue = @(1.0);
+    scale.toValue = @(2.0);
+
+    [redBall.layer addAnimation:scale forKey:scale.keyPath];
+    redBall.transform = CGAffineTransformMakeScale(2.0, 2.0);
 
     return YES;
 }
