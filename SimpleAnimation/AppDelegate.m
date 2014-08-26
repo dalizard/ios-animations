@@ -21,7 +21,7 @@
     
     UIView *redBall = [[UIView alloc] initWithFrame:CGRectMake(50, 50, 100, 100)];
     redBall.backgroundColor = [UIColor redColor];
-    redBall.layer.cornerRadius = 50;
+    //redBall.layer.cornerRadius = 50;
 
     [self.window addSubview:redBall];
 
@@ -44,13 +44,23 @@
 
     JNWSpringAnimation *scale = [JNWSpringAnimation animationWithKeyPath:@"transform.scale"];
     scale.damping = 9;
-    scale.stiffness = 100;
-    scale.mass = 2;
-    scale.fromValue = @(1.0);
-    scale.toValue = @(2.0);
+    scale.stiffness = 9;
+    scale.mass = 1;
+    scale.fromValue = @(1);
+    scale.toValue = @(4.0);
 
     [redBall.layer addAnimation:scale forKey:scale.keyPath];
-    redBall.transform = CGAffineTransformMakeScale(2.0, 2.0);
+    redBall.transform = CGAffineTransformScale(redBall.transform, 4.0, 4.0);
+
+    JNWSpringAnimation *rotation = [JNWSpringAnimation animationWithKeyPath:@"transform.rotation"];
+    rotation.damping = 9;
+    rotation.stiffness = 9;
+    rotation.mass = 1;
+    rotation.fromValue = @(0);
+    rotation.toValue = @(M_PI);
+
+    [redBall.layer addAnimation:rotation forKey:rotation.keyPath];
+    redBall.transform = CGAffineTransformRotate(redBall.transform, M_PI);
 
     return YES;
 }
